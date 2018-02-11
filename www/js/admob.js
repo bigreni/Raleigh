@@ -174,7 +174,6 @@ function loadStops() {
 }
 
 function loadArrivals() {
-    window.ga.trackView($("#agencySelect option:selected").text());
     var outputContainer = $('.js-next-bus-results');
     var results = "";
     var agencyId = $("#agencySelect").val();
@@ -215,4 +214,5 @@ function loadArrivals() {
                   }
               }
           });
+    window.ga.trackView($("#agencySelect option:selected").text());
 }
