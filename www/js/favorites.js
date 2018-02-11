@@ -56,7 +56,7 @@ function removeFavorite(index)
 function loadArrival(agencyId,routeId,stopId,text)
 {
     var outputContainer = $('.js-next-bus-results');
-    var results = "<p><strong>" + text + "</strong></p>";
+    var results = "";
     $.ajax({
         type: "GET",
         url: "https://transloc-api-1-2.p.mashape.com/arrival-estimates.json",
@@ -73,15 +73,20 @@ function loadArrival(agencyId,routeId,stopId,text)
             }
             else
             {
-                var arrivals = output.data[0].arrivals[0];
-                var arrivalTime = Date.parse(arrivals.arrival_at) - Date.now();
-                arrivalTime = Math.round(((arrivalTime % 86400000) % 3600000) / 60000);
-                results = results.concat("<p>" + arrivalTime + " min(s)</p>");
+                var arrivals = output.data[0].arrivals;
+                for (var x in output.data[0].arrivals)
+                    {
+                        var arrivalTime = Date.parse(arrivals[x].arrival_at) - Date.now();
+                        arrivalTime = Math.round(((arrivalTime % 86400000) % 3600000) / 60000);
+                        if(arrivalTime >= 0)
+                            results = results.concat("<p>" + arrivalTime + " min</p>");                       
+                    }
             }
                       
             if (results == "") {
                 results = results.concat("<p> No upcoming arrivals.</p>");
             }
+            results = "<p><strong>" + text + "</strong></p>" + results;
             $(outputContainer).html(results).show();
         }
     });

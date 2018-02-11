@@ -199,16 +199,20 @@ function loadArrivals() {
                       }
                       else
                       {
-                      var arrivals = output.data[0].arrivals[0];
-                      results = results.concat("<p><strong>" + $("#routeSelect option:selected").text() + " - " + $("#routeStopSelect option:selected").text() + "</strong></p>");
-                      var arrivalTime = Date.parse(arrivals.arrival_at) - Date.now();
-                      arrivalTime = Math.round(((arrivalTime % 86400000) % 3600000) / 60000);
-                      results = results.concat("<p>" + arrivalTime + " min(s)</p>");
+                      var arrivals = output.data[0].arrivals;
+                      for (var x in output.data[0].arrivals)
+                          {
+                          var arrivalTime = Date.parse(arrivals[x].arrival_at) - Date.now();
+                          arrivalTime = Math.round(((arrivalTime % 86400000) % 3600000) / 60000);
+                          if(arrivalTime >= 0)
+                            results = results.concat("<p>" + arrivalTime + " min</p>");                       
+                          }
                       }
                       
                       if (results == "") {
                           results = results.concat("<p> No upcoming arrivals.</p>");
                       }
+                      results = "<p><strong>" + $("#routeSelect option:selected").text() + " - " + $("#routeStopSelect option:selected").text() + "</strong></p>" + results;
                       $(outputContainer).html(results).show();
                       document.getElementById('btnSave').style.visibility = "visible";
                   }
