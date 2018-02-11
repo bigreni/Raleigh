@@ -112,7 +112,7 @@ function loadRoutes() {
                   }
                   var list = $("#routeSelect");
                   $(list).empty();
-                  $(list).append($("<option disabled/>").val("0").text("- Select Direction -"));
+                  $(list).append($("<option disabled/>").val("0").text("- Select a route -"));
                   var numDirections = msg.data[agencyId];
                   if (numDirections.length == null) {
                       $(list).append($("<option />").val(numDirections.route_id).text(numDirections.short_name + " - " + numDirections.long_name));
@@ -152,7 +152,7 @@ function loadStops() {
                   }
                   var stopList = $("#routeStopSelect");
                   $(stopList).empty();
-                  $(stopList).append($("<option disabled/>").val("0").text("- Select Stop -"));
+                  $(stopList).append($("<option disabled/>").val("0").text("- Select a stop -"));
                   var numStops = msg.data;
                   $.each(numStops, function (index, item) {
                       for (var x in item.routes) {
