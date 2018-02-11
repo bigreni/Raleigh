@@ -60,10 +60,12 @@
         $('#simplemenu').sidr();
         $("span").remove();
         $(".dropList").select2();
-
-        //initApp();
-        //askRating();
-        document.getElementById('screen').style.display = 'none';     
+        window.ga.startTrackerWithId('UA-88579601-8', 1, function(msg) {
+            window.ga.trackView('Home');
+        });    
+        initApp();
+        askRating();
+        //document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()
@@ -172,6 +174,7 @@ function loadStops() {
 }
 
 function loadArrivals() {
+    window.ga.trackView($("#agencySelect option:selected").text());
     var outputContainer = $('.js-next-bus-results');
     var results = "";
     var agencyId = $("#agencySelect").val();
