@@ -23,7 +23,7 @@
         if (!AdMob) { alert('admob plugin not ready'); return; }
         initAd();
         //display interstitial at startup
-        loadInterstitial();
+        //loadInterstitial();
     }
     function initAd() {
         var defaultOptions = {
@@ -38,13 +38,16 @@
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) {
-            document.getElementById("screen").style.display = 'none';
+            //document.getElementById("screen").style.display = 'none';
+            loadArrivals();
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
         document.addEventListener('onAdLeaveApp', function (data) { });
-        document.addEventListener('onAdDismiss', function (data) { 
-            document.getElementById("screen").style.display = 'none';        });
+        document.addEventListener('onAdDismiss', function (data) {
+            //document.getElementById("screen").style.display = 'none';
+            loadArrivals();
+        });
     }
 
     function createSelectedBanner() {
@@ -219,4 +222,25 @@ function loadArrivals() {
               }
           });
     window.ga.trackView($("#agencySelect option:selected").text());
+}
+
+function saveFavorites()
+{
+    var favStop = localStorage.getItem("Favorites");
+    var newFave = $('#agencySelect option:selected').val() + ">" + $("#routeSelect option:selected").val() + ">" + $("#routeStopSelect option:selected").val() + ":" + $('#agencySelect option:selected').text() + " > " + $("#routeSelect option:selected").text() + " > " + $("#routeStopSelect option:selected").text();
+        if (favStop == null)
+        {
+            favStop = newFave;
+        }   
+        else if(favStop.indexOf(newFave) == -1)
+        {
+            favStop = favStop + "|" + newFave;               
+        }
+        else
+        {
+            $("#message").text('Stop is already favorited!!');
+            return;
+        }
+        localStorage.setItem("Favorites", favStop);
+        $("#message").text('Stop added to favorites!!');
 }

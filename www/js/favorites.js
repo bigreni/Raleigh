@@ -1,5 +1,63 @@
+    function onLoad() {
+        if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+            document.addEventListener('deviceready', loadFavorites, false);
+        } else {
+            loadFavorites();
+        }
+    }
+
+  var admobid = {};
+  if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
+    admobid = {
+      banner: 'ca-app-pub-1683858134373419/7790106682', // or DFP format "/6253334/dfp_example_ad"
+      interstitial: 'ca-app-pub-9249695405712287/3419625019'
+    };
+  } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+    admobid = {
+      banner: 'ca-app-pub-1683858134373419/7790106682', // or DFP format "/6253334/dfp_example_ad"
+      interstitial: 'ca-app-pub-9249695405712287/7516860115'
+    };
+  }
+
+    function initApp() {
+        if (!AdMob) { alert('admob plugin not ready'); return; }
+        initAd();
+        //display interstitial at startup
+        loadInterstitial();
+    }
+
+    function initAd() {
+        var defaultOptions = {
+            position: AdMob.AD_POSITION.BOTTOM_CENTER,
+            bgColor: 'black', // color name, or '#RRGGBB'
+            isTesting: false // set to true, to receiving test ad for testing purpose
+        };
+        AdMob.setOptions(defaultOptions);
+        registerAdEvents();
+    }
+
+    // optional, in case respond to events or handle error
+    function registerAdEvents() {
+        // new events, with variable to differentiate: adNetwork, adType, adEvent
+        document.addEventListener('onAdFailLoad', function (data) {
+            document.getElementById("screen").style.display = 'none';
+        });
+        document.addEventListener('onAdLoaded', function (data) { });
+        document.addEventListener('onAdPresent', function (data) { });
+        document.addEventListener('onAdLeaveApp', function (data) { });
+        document.addEventListener('onAdDismiss', function (data) {
+            document.getElementById("screen").style.display = 'none';
+        });
+    }
+
+    function loadInterstitial() {
+        AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+    }
+
 function loadFavorites()
 {
+    initApp();
+    //document.getElementById("screen").style.display = 'none';
     $('#simplemenu').sidr();
     var favStop = localStorage.getItem("Favorites");
     var arrFaves = favStop.split("|");
@@ -13,27 +71,6 @@ function loadFavorites()
         text = '<li><button onclick=removeFavorite(' + i + '); style="background-color:red; border:none;float:right;">&#x2718;</button><a href="javascript:loadArrival(' + arrIds[0] + ',' + arrIds[1] +',' + arrIds[2] + ",'" + arrStops[1].trim() + "'"  +')"; class="langOption"><h4 class="selectLanguage">' + arrStops[1] + '</h4></a></li>';
 	    $("#lstFaves").append(text);
     }
-}
-
-function saveFavorites()
-{
-    var favStop = localStorage.getItem("Favorites");
-    var newFave = $('#agencySelect option:selected').val() + ">" + $("#routeSelect option:selected").val() + ">" + $("#routeStopSelect option:selected").val() + ":" + $('#agencySelect option:selected').text() + " > " + $("#routeSelect option:selected").text() + " > " + $("#routeStopSelect option:selected").text();
-        if (favStop == null)
-        {
-            favStop = newFave;
-        }   
-        else if(favStop.indexOf(newFave) == -1)
-        {
-            favStop = favStop + "|" + newFave;               
-        }
-        else
-        {
-            $("#message").text('Stop is already favorited!!');
-            return;
-        }
-        localStorage.setItem("Favorites", favStop);
-        $("#message").text('Stop added to favorites!!');
 }
 
 function removeFavorite(index)
