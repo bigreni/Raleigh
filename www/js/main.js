@@ -66,9 +66,9 @@
         window.ga.startTrackerWithId('UA-88579601-8', 1, function(msg) {
             window.ga.trackView('Home');
         });    
+        document.getElementById('screen').style.display = 'none';     
         initApp();
         askRating();
-        document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()
