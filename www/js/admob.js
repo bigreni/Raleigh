@@ -224,6 +224,12 @@ function loadArrivals() {
     window.ga.trackView($("#agencySelect option:selected").text());
 }
 
+function getPredictions()
+{
+    loadInterstitial();
+    //loadArrivals();
+}
+
 function saveFavorites()
 {
     var favStop = localStorage.getItem("Favorites");
