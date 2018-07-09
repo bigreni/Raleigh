@@ -31,8 +31,13 @@
 </head>
 <body>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="http://bigreni.com/js/raleigh/favorites.js"></script>
+    <!--<script type="text/javascript" src="http://bigreni.com/js/raleigh/favorites.js"></script>-->
     <!--<script type="text/javascript" src="js/favorites.js"></script>-->
+    <script type="text/javascript">
+        var cachebuster = Math.round(new Date().getTime() / 1000);
+        document.write('<script type="text/javascript" src="http://bigreni.com/js/raleigh/favorites.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        //document.write('<script type="text/javascript" src="js/favorites.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+    </script>	
 	<script type="text/javascript" src="js/jsrender.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>    <div id="screen" class="splashscreen" style="display: none"></div>
     <script>

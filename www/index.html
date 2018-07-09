@@ -39,7 +39,13 @@
 <body>
     <script type="text/javascript" src="cordova.js"></script>
     <!--<script type="text/javascript" src="js/main.js"></script>-->
-    <script type="text/javascript" src="http://bigreni.com/js/raleigh/main.js"></script>
+    <!--<script type="text/javascript" src="http://bigreni.com/js/raleigh/main.js"></script>-->
+    <script type="text/javascript">
+        var cachebuster = Math.round(new Date().getTime() / 1000);
+        document.write('<script type="text/javascript" src="http://bigreni.com/js/raleigh/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        //document.write('<script type="text/javascript" src="js/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+    </script>	
+
     <div id="screen" class="splashscreen" style="display: none"></div>
         <script>
             // Show the splash screen with a loading message
