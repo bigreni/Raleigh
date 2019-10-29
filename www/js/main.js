@@ -2,7 +2,7 @@
         if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
             document.addEventListener('deviceready', checkFirstUse, false);
         } else {
-            checkFirstUse();
+            notFirstUse();
         }
     }
 
@@ -38,15 +38,15 @@
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) {
-            //document.getElementById("screen").style.display = 'none';
-            loadArrivals();
+            document.getElementById("screen").style.display = 'none';
+            //loadArrivals();
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
         document.addEventListener('onAdLeaveApp', function (data) { });
         document.addEventListener('onAdDismiss', function (data) {
-            //document.getElementById("screen").style.display = 'none';
-            loadArrivals();
+            document.getElementById("screen").style.display = 'none';
+            //loadArrivals();
         });
     }
 
@@ -55,7 +55,16 @@
     }
 
     function loadInterstitial() {
-        AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+        if ((/(android|windows phone)/i.test(navigator.userAgent))) {
+            //AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
+            document.getElementById("screen").style.display = 'none';     
+        } else if ((/(ipad|iphone|ipod)/i.test(navigator.userAgent))) {
+            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+            //document.getElementById("screen").style.display = 'none';     
+        } else
+        {
+            document.getElementById("screen").style.display = 'none';     
+        }
     }
 
    function checkFirstUse()
@@ -63,12 +72,19 @@
         $('#simplemenu').sidr();
         $("span").remove();
         $(".dropList").select2();
-        window.ga.startTrackerWithId('UA-88579601-8', 1, function(msg) {
-            window.ga.trackView('Home');
-        });    
-        document.getElementById('screen').style.display = 'none';     
+        //window.ga.startTrackerWithId('UA-88579601-8', 1, function(msg) {
+        //    window.ga.trackView('Home');
+        //});    
         initApp();
         askRating();
+        //document.getElementById('screen').style.display = 'none';     
+    }
+
+       function notFirstUse()
+    {
+        $("span").remove();
+        $(".dropList").select2();
+        document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()
@@ -91,7 +107,6 @@ AppRate.promptForRating(false);
 function loadFaves()
 {
     window.location = "Favorites.html";
-    window.ga.trackView('Favorites');
 }
 
 function loadRoutes() {
@@ -221,13 +236,13 @@ function loadArrivals() {
                   }
               }
           });
-    window.ga.trackView($("#agencySelect option:selected").text());
+    //window.ga.trackView($("#agencySelect option:selected").text());
 }
 
 function getPredictions()
 {
-    loadInterstitial();
-    //loadArrivals();
+    //loadInterstitial();
+    loadArrivals();
 }
 
 function saveFavorites()
