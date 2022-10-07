@@ -7,37 +7,50 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.raleigh.free"
-    },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.raleigh.free"
-    },
-    "cordova-plugin-device-motion": {
-      "PACKAGE_NAME": "com.raleigh.free"
-    },
-    "cordova-plugin-geolocation": {
-      "GPS_REQUIRED": "true",
-      "PACKAGE_NAME": "com.raleigh.free"
-    },
-    "cordova-plugin-dialogs": {
+    "cordova-plugin-admobpro": {
+      "ADMOB_ANDROID_APP_ID": "ca-app-pub-1855415514372943~9063671314",
+      "PLAY_SERVICES_VERSION": "20.4.0",
       "PACKAGE_NAME": "com.raleigh.free"
     },
     "cordova-plugin-apprate": {
       "PLAY_CORE_VERSION": "1.+",
       "PACKAGE_NAME": "com.raleigh.free"
     },
-    "cordova-plugin-admobpro": {
-      "ADMOB_ANDROID_APP_ID": "ca-app-pub-1855415514372943~9063671314",
-      "PLAY_SERVICES_VERSION": "20.4.0",
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-geolocation": {
+      "GPS_REQUIRED": "true",
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-idfa": {
+      "ANDROID_PLAY_ADID_VERSION": "17.0.+",
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-wkwebview-file-xhr": {
       "PACKAGE_NAME": "com.raleigh.free"
     }
   },
   "dependent_plugins": {
-    "cordova-plugin-nativestorage": {
+    "cordova-admobsdk": {
       "PACKAGE_NAME": "com.raleigh.free"
     },
     "cordova-plugin-extension": {
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "com.raleigh.free"
+    },
+    "cordova-support-android-plugin": {
       "PACKAGE_NAME": "com.raleigh.free"
     }
   }

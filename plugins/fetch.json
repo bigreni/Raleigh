@@ -15,14 +15,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-device-motion": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-device-motion"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-geolocation": {
     "source": {
       "type": "registry",
@@ -84,6 +76,40 @@
       "id": "cordova-admobsdk@~8.13.0"
     },
     "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@5.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-idfa": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-idfa"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_PLAY_ADID_VERSION": "17.0.+"
+    }
+  },
+  "cordova-support-android-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-support-android-plugin@~2.0.4"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-wkwebview-file-xhr": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-wkwebview-file-xhr"
+    },
+    "is_top_level": true,
     "variables": {}
   }
 }
