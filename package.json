@@ -2,6 +2,7 @@
   "devDependencies": {
     "cordova-admobsdk": "~8.13.0",
     "cordova-android": "^10.1.2",
+    "cordova-ios": "^6.2.0",
     "cordova-plugin-admobpro": "^8.13.1",
     "cordova-plugin-apprate": "^1.7.2",
     "cordova-plugin-device": "^2.1.0",
@@ -17,7 +18,8 @@
   },
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-statusbar": {},
